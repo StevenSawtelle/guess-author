@@ -123,3 +123,38 @@ button.female:hover {
     font-size: 0.9em;
   }
 }
+
+.guess-buttons {
+  margin-bottom: 20px;
+}
+
+p.correct {
+  color: green;
+}
+
+p.incorrect {
+  color: red;
+}
+
+.inline {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  column-gap: 4px;
+}
+
+p.bold {
+  font-weight: bold;
+}
+
+p.italic {
+  font-style: italic;
+}
+
+p.male {
+  color: #4a90e2;
+}
+
+p.female {
+  color: #ff69b4;
+}
