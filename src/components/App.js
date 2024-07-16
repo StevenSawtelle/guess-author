@@ -41,10 +41,7 @@ function App() {
   const [currentSentence, setCurrentSentence] = useState('');
   const [currentBook, setCurrentBook] = useState({});
   const [previousSentence, setPreviousSentence] = useState('');
-  // const [previousGender, setPreviousGender] = useState('');
-  // const [previousAuthor, setPreviousAuthor] = useState('');
   const [previousBook, setPreviousBook] = useState({});
-  // cibst
   const [isPreviousGuessCorrect, setIsPreviousGuessCorrect] = useState(null);
   const [score, setScore] = useState(0);
   const [guesses, setGuesses] = useState(0);
@@ -71,8 +68,6 @@ function App() {
 
     setPreviousSentence(currentSentence);
     setPreviousBook(currentBook);
-    // setPreviousGender(currentBook.gender);
-    // setPreviousAuthor(currentBook.author);
     setIsPreviousGuessCorrect(isCorrect);
 
     if (guesses < 9) {
@@ -83,18 +78,20 @@ function App() {
   return (
       <div className="App">
         <h1>Author gender guesser!</h1>
-        {guesses < 10 ? (
+        {guesses < 10 && (
             <>
               <h2>What is the gender of the author of the following:</h2>
               <SentenceDisplay sentence={currentSentence} />
               <GuessButtons onGuess={handleGuess} />
-              {previousSentence && (
-                  <div>
+            </>
+        )}
+        {previousSentence && (
+            <div>
                     <span className={'inline'}>
                       <p className={'bold'}>Previous guess was:</p>
                       <p className={isPreviousGuessCorrect ? 'correct' : 'incorrect'}>{isPreviousGuessCorrect ? 'Correct' : 'Incorrect'}</p>
                     </span>
-                    <span className={'inline'}>
+              <span className={'inline'}>
                       <p className={'bold'}>Previous Sentence:</p>
                       <p>{previousSentence}</p>
                     </span><span className={'inline'}>
@@ -103,12 +100,9 @@ function App() {
                       <p className={'italic'}>{previousBook.author},</p>
                       <p className={`${previousBook.gender.toLowerCase() === 'male' ? 'male' : 'female'}`}>{previousBook.gender}</p>
                     </span>
-                  </div>
-                )}
-            </>
-        ) : (
-            <ScoreDisplay score={score}/>
+            </div>
         )}
+        {guesses >= 10 && <ScoreDisplay score={score}/>}
       </div>
   );
 }
